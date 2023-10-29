@@ -6,12 +6,14 @@ import axios from 'axios';
 const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
-  console.log(bookings);
+  // console.log(bookings);
 
   const url = `http://localhost:3000/bookings?email=${user.email}`;
 
   useEffect(() => {
-    axios.get(url).then((res) => setBookings(res.data));
+    axios
+      .get(url, { withCredentials: true })
+      .then((res) => setBookings(res.data));
     // fetch(url)
     //   .then((res) => res.json())
     //   .then((data) => setBookings(data));
